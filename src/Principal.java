@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Trabalho1 {
-
+public class Principal {
+    //TRABALHO LAB 1
     static Random meuGerador = new Random();
 
     public static int sortearInt(int menor, int maior) {
