@@ -26,14 +26,14 @@ public class Principal {
         return repeticoes;
     }
 
-    public static void sortearNumeros(int tamanhoLista1, int tamanhoLista2, ArrayList<Integer> lista1, ArrayList<Integer> lista2) {
+    public static void sortearNumeros(int tamanhoLista, ArrayList<Integer> lista1, ArrayList<Integer> lista2) {
 
-        for (int Counter = 0; Counter < tamanhoLista1; Counter++) {
-            int numeroSorteado = sortearInt(0, tamanhoLista1);
+        for (int Counter = 0; Counter < tamanhoLista; Counter++) {
+            int numeroSorteado = sortearInt(0, tamanhoLista);
             lista1.add(numeroSorteado);
         }
-        for (int Counter = 0; Counter < tamanhoLista2; Counter++) {
-            int numeroSorteado = sortearInt(0, tamanhoLista2);
+        for (int Counter = 0; Counter < tamanhoLista; Counter++) {
+            int numeroSorteado = sortearInt(0, tamanhoLista);
             lista2.add(numeroSorteado);
         }
         System.out.println("Lista 1: " + lista1);
@@ -42,13 +42,11 @@ public class Principal {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Tamanho da primeira lista: ");
-        int Size1 = scan.nextInt();
-        System.out.println("Tamanho da segunda lista: ");
-        int Size2 = scan.nextInt();
-        ArrayList<Integer> lista1 = new ArrayList<>(Size1);
-        ArrayList<Integer> lista2 = new ArrayList<>(Size2);
-        sortearNumeros(Size1, Size2, lista1, lista2);
+        System.out.println("Digite o tamanho das listas: ");
+        int Size = scan.nextInt();
+        ArrayList<Integer> lista1 = new ArrayList<>(Size);
+        ArrayList<Integer> lista2 = new ArrayList<>(Size);
+        sortearNumeros(Size, lista1, lista2);
         int tamanhoIntesecao = obterTamanhoIntersecao(lista1, lista2);
         if (tamanhoIntesecao != 0) {
             System.out.println("No total, as listas possuem " + tamanhoIntesecao + " interseção(ões) entre si");
