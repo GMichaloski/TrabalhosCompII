@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 
 public class ContaCorrente {
@@ -19,11 +20,14 @@ public class ContaCorrente {
 
     // CONSTRUTOR: método especial que roda quando chamamos o "new" para instanciar
     public ContaCorrente(int numeroDaConta, Correntista correntista) {
+        this.correntista = correntista;
         this.numero = numeroDaConta;
         this.saldoEmReais = SALDO_INICIAL_DA_CONTA;  // saldo inicial doado pelo banco
         this.transacoes = new ArrayList<>();
         this.transacoes.add("Conta criada com saldo de " + this.saldoEmReais);
     }
+
+
 
     public float getSaldoEmReais() {
         return this.saldoEmReais;
@@ -33,9 +37,9 @@ public class ContaCorrente {
         if (valor <= 0) {
             return;  // valor inválido; não faz nada!
             // ToDo lançar uma exceção
+        } else {
+            this.saldoEmReais += valor;
         }
-
-        this.saldoEmReais += valor;
 
 //        Date agora = new Date();  // now
 
@@ -45,8 +49,13 @@ public class ContaCorrente {
         quantidadeDeTransacoesDeTodasAsContas++;
     }
 
+    public String getNome(){
+        String nome = this.correntista.getNome();
+        return nome;
+    }
     public long getCpfDoCorrentista() {
-        return 0;
+        long cpfDoCorrentista = this.correntista.getCpf();
+        return cpfDoCorrentista;
         // ToDo IMPLEMENT ME!!!!!!
     }
 
@@ -69,10 +78,24 @@ public class ContaCorrente {
     }
 
     public void sacar(float valor) {
+        if ((valor > 0) && (valor <= this.saldoEmReais)) {
+            this.saldoEmReais -= valor;
+            quantidadeDeTransacoesDeTodasAsContas++;
+        }
         // ToDo IMPLEMENT ME!!!
     }
 
     public void efetuarTransferecia(ContaCorrente contaDestino, float valor) {
-        // ToDo IMPLEMENT ME!!!
+        if ((valor > 0) && (valor <= this.saldoEmReais)) {
+            this.saldoEmReais -= valor;
+            contaDestino.receberDepositoEmDinheiro(valor);
+            // ToDo IMPLEMENT ME!!!
+        }
+    }
+
+    public static void main(String[] args) {
+        Correntista Gustavo = new Correntista("Gustavo", 123321);
+        ContaCorrente contaGustavo = new ContaCorrente(777, Gustavo);
+        contaGustavo.sacar(2);
     }
 }

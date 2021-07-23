@@ -12,11 +12,18 @@ public class ContaCorrenteTest {
     private Correntista joao;
     private float saldoInicial;
 
+    private ContaCorrente contaDaMaria;
+    private Correntista maria;
+
+
     @Before
     public void setUp() {
-        joao = new Correntista();
+        joao = new Correntista( "Joao", 40028922);
         contaDoJoao = new ContaCorrente(1, joao);
         saldoInicial = contaDoJoao.getSaldoEmReais();
+
+        maria = new Correntista("Maria", 22222);
+        contaDaMaria = new ContaCorrente(2, maria);
     }
 
     @Test
@@ -25,6 +32,14 @@ public class ContaCorrenteTest {
                 10.0,
                 saldoInicial,
                 FLOAT_DELTA);
+    }
+
+    @Test
+    public void testarGetCpf(){
+        long testeCpf = contaDaMaria.getCpfDoCorrentista();
+        assertEquals("Toda conta, ao ser criada, deve conter um cpf atribuído à ela",testeCpf,maria.getCpf(),
+                FLOAT_DELTA);
+
     }
 
     @Test
@@ -67,7 +82,7 @@ public class ContaCorrenteTest {
         contaDoJoao.sacar(2);
         assertEquals("O valor sacado deve ser descontado do saldo da conta",
                 saldoInicial - 2,
-                contaDoJoao.getSaldoEmReais()
+                contaDoJoao.getSaldoEmReais(),FLOAT_DELTA
         );
     }
 
@@ -76,24 +91,32 @@ public class ContaCorrenteTest {
         contaDoJoao.sacar(100000);
         assertEquals("Saques de valores maiores que o saldo não devem ser permitidos",
                 saldoInicial,
-                contaDoJoao.getSaldoEmReais()
+                contaDoJoao.getSaldoEmReais(),FLOAT_DELTA
         );
+    }
+    
+    @Test
+    public void testGetQuantidadeDeTransacoesDeTodasAsContas(){
+        int temp = ContaCorrente.getQuantidadeDeTransacoesDeTodasAsContas();
+        contaDoJoao.efetuarTransferecia(contaDaMaria, 5);
+        contaDaMaria.sacar(11);
+
+        assertEquals("Todas as operações bancárias devem ser registradas.", temp + 2,
+                ContaCorrente.getQuantidadeDeTransacoesDeTodasAsContas(), FLOAT_DELTA);
     }
 
     @Test
     public void testarTransferencia() {
-        Correntista maria = new Correntista("Maria", 22222);
-        ContaCorrente contaDaMaria = new ContaCorrente(2, maria);
 
         contaDoJoao.efetuarTransferecia(contaDaMaria, 3);
 
-        assertEquals("",
+        assertEquals("O valor recebido deve ser adicionado ao saldo da conta",
                 saldoInicial + 3,
                 contaDaMaria.getSaldoEmReais(),
                 FLOAT_DELTA
         );
 
-        assertEquals("",
+        assertEquals("O valor transferido deve ser descontado do saldo da conta",
                 saldoInicial - 3,
                 contaDoJoao.getSaldoEmReais(),
                 FLOAT_DELTA
@@ -102,18 +125,16 @@ public class ContaCorrenteTest {
 
     @Test
     public void testarTransferenciaSemFundos() {
-        Correntista maria = new Correntista("Maria", 22222);
-        ContaCorrente contaDaMaria = new ContaCorrente(2, maria);
 
         contaDoJoao.efetuarTransferecia(contaDaMaria, 100000);
 
-        assertEquals("",
+        assertEquals("Não se pode receber valor de uma transferência inválida",
                 saldoInicial,
                 contaDaMaria.getSaldoEmReais(),
                 FLOAT_DELTA
         );
 
-        assertEquals("",
+        assertEquals("Transferência de valores maiores do que o saldo não são permitidas",
                 saldoInicial,
                 contaDoJoao.getSaldoEmReais(),
                 FLOAT_DELTA
