@@ -1,2 +1,6 @@
-package PACKAGE_NAME;public class Correntista {
+public class Correntista {
+
+    private long cpf;
+    private String nome;
+
 }
