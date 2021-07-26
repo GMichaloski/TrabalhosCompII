@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Correntista {
 
-    private long cpf;
+    private final long cpf;
     private String nome;
 
     public Correntista(String nome, long cpf){
