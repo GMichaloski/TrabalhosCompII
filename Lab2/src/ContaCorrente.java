@@ -36,7 +36,6 @@ public class ContaCorrente {
     public void receberDepositoEmDinheiro(float valor) {
         if (valor <= 0) {
             return;  // valor inválido; não faz nada!
-            // ToDo lançar uma exceção
         } else {
             this.saldoEmReais += valor;
         }
@@ -56,7 +55,6 @@ public class ContaCorrente {
     public long getCpfDoCorrentista() {
         long cpfDoCorrentista = this.correntista.getCpf();
         return cpfDoCorrentista;
-        // ToDo IMPLEMENT ME!!!!!!
     }
 
     public String getExtrato() {
@@ -82,20 +80,12 @@ public class ContaCorrente {
             this.saldoEmReais -= valor;
             quantidadeDeTransacoesDeTodasAsContas++;
         }
-        // ToDo IMPLEMENT ME!!!
     }
 
     public void efetuarTransferecia(ContaCorrente contaDestino, float valor) {
         if ((valor > 0) && (valor <= this.saldoEmReais)) {
             this.saldoEmReais -= valor;
             contaDestino.receberDepositoEmDinheiro(valor);
-            // ToDo IMPLEMENT ME!!!
         }
-    }
-
-    public static void main(String[] args) {
-        Correntista Gustavo = new Correntista("Gustavo", 123321);
-        ContaCorrente contaGustavo = new ContaCorrente(777, Gustavo);
-        contaGustavo.sacar(2);
     }
 }
