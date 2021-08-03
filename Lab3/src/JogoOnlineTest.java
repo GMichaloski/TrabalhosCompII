@@ -37,7 +37,7 @@ public class JogoOnlineTest {
     public void testarOffline(){
         JogoOnline.Logout("Guga");
         assertEquals("Se não estiver logado, o usuário deve estar offline",
-                false, JogoOnline.jogadores.get(0).online);
+                false, JogoOnline.jogadores.get(0).getJogando());
     }
 
 
@@ -45,7 +45,7 @@ public class JogoOnlineTest {
     public void testarLogin(){
         JogoOnline.Login("Guga", "Vasco");
         assertEquals("Com usuário e senha corretos, o usuário deve ser capaz de logar em sua conta", true,
-                JogoOnline.jogadores.get(0).online);
+                JogoOnline.jogadores.get(0).getOnline());
     }
 
     @Test
@@ -53,7 +53,7 @@ public class JogoOnlineTest {
         JogoOnline.Logout("Vini");
         JogoOnline.Login("Vini", "Botafogo");
         assertEquals("Com usuário e senha incorretos, o usuário não deve ser capaz de logar em sua conta",
-                false, JogoOnline.jogadores.get(1).online);
+                false, JogoOnline.jogadores.get(1).getOnline());
     }
 
     @Test
@@ -62,7 +62,7 @@ public class JogoOnlineTest {
         JogoOnline.Logout("Vini");
 
         assertEquals("Após logado, o usuário deve ter a opção de deslogar", false,
-                JogoOnline.jogadores.get(1).online);
+                JogoOnline.jogadores.get(1).getOnline());
     }
 
     @Test
@@ -76,10 +76,10 @@ public class JogoOnlineTest {
 
         Guga.points = 1200;
         Vini.points = 900;
-        Guga.online = true;
-        Vini.online = true;
-        Guga.Jogando = false;
-        Vini.Jogando = false;
+        Guga.setOnline(true);
+        Vini.setOnline(true);
+        Guga.setJogando(false);
+        Vini.setJogando(false);
 
         Partida partida = JogoOnline.iniciarPartida(Guga,Vini);
         assertEquals("O primeiro jogador ganha se obtiver a maior pontuação", 1, partida.resultado);
@@ -90,10 +90,10 @@ public class JogoOnlineTest {
 
         Guga.points = 800;
         Vini.points = 900;
-        Guga.online = true;
-        Vini.online = true;
-        Guga.Jogando = false;
-        Vini.Jogando = false;
+        Guga.setOnline(true);
+        Vini.setOnline(true);
+        Guga.setJogando(false);
+        Vini.setJogando(false);
         Partida partida = JogoOnline.iniciarPartida(Guga,Vini);
         assertEquals("O segundo jogador ganha se obtiver a maior pontuação", 2, partida.resultado);
     }
@@ -103,10 +103,10 @@ public class JogoOnlineTest {
 
         Guga.points = 1000;
         Vini.points = 1000;
-        Guga.online = true;
-        Vini.online = true;
-        Guga.Jogando = false;
-        Vini.Jogando = false;
+        Guga.setOnline(true);
+        Vini.setOnline(true);
+        Guga.setJogando(false);
+        Vini.setJogando(false);
         Partida partida = JogoOnline.iniciarPartida(Guga,Vini);
         assertEquals("Se a pontuação de ambos for igual, teremos um empate", 0, partida.resultado);
     }
@@ -114,10 +114,10 @@ public class JogoOnlineTest {
     @Test
     public void testarAdversario(){
         JogoOnline.Login("Millo","Gremio");
-        Guga.online = true;
-        Vini.online = true;
-        Guga.Jogando = false;
-        Vini.Jogando = true;
+        Guga.setOnline(true);
+        Vini.setOnline(true);
+        Guga.setJogando(false);
+        Vini.setJogando(true);
         assertEquals("O usuário encontrando deve ser diferente do solicitante, estar online e disponivel",
                 Millo, JogoOnline.escolherAdversario(Guga));
 
@@ -139,8 +139,4 @@ public class JogoOnlineTest {
         assertEquals("É preciso pontuar corretamente",999,
                 JogoOnline.getJogador("Bia").points);
     }
-    /*for (int i = 0; i < JogoOnline.jogadores.size();i++)
-        {
-            System.out.println(JogoOnline.jogadores.get(i).userName);
-        }*/
 }

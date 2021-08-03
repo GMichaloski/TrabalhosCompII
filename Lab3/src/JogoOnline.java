@@ -21,9 +21,9 @@ public class JogoOnline {
     public static void Login(String userName, String userPassword) {
 
         Jogador i = getJogador(userName);
-        if (!i.online) {
+        if (!i.getOnline()) {
             if (i.userPassword.equals(userPassword)) {
-                i.online = true;
+                i.setOnline(true);
             }
         }
     }
@@ -31,8 +31,8 @@ public class JogoOnline {
     public static void Logout(String userName) {
 
         Jogador i = getJogador(userName);
-        if (i.online) {
-            i.online = false;
+        if (i.getOnline()) {
+            i.setOnline(false);
         }
 
     }
@@ -50,9 +50,9 @@ public class JogoOnline {
 
     public static Partida iniciarPartida(Jogador P1, Jogador P2) {
 
-        if (P1.online && P2.online && !P1.Jogando && !P2.Jogando) {
-            P1.Jogando = true;
-            P2.Jogando = true;
+        if (P1.getOnline() && P2.getOnline() && !P1.getJogando() && !P2.getJogando()) {
+            P1.setOnline(true);
+            P2.setOnline(true);
             Partida partida = new Partida(P1, P2);
             return partida;
         }
@@ -62,36 +62,34 @@ public class JogoOnline {
 
     public static Jogador escolherAdversario(Jogador solicitante) {
         for (Jogador i : jogadores) {
-            if (i != solicitante && i.online && !i.Jogando) {
+            if (i != solicitante && i.getOnline() && !i.getJogando()) {
                 return i;
             }
         }
         return null;
-        //ToDo tirar dúvida
+        //ToDo resolver nullPointerException
     }
 
-    public static void encerrarPartida(Partida partida){
+    public static void encerrarPartida(Partida partida) {
         int resultado = partida.resultado;
-        if(resultado == 1){
-            partida.end(partida.jogador1,partida.jogador2);
+        if (resultado == 1) {
+            partida.end(partida.jogador1, partida.jogador2);
             partida.jogador1.partidas.add(partida);
             partida.jogador2.partidas.add(partida);
-            partida.jogador1.Jogando = false;
-            partida.jogador2.Jogando = false;
+            partida.jogador1.setJogando(false);
+            partida.jogador2.setJogando(false);
 
-        }
-        else if(resultado == 2){
-            partida.end(partida.jogador2,partida.jogador1);
+        } else if (resultado == 2) {
+            partida.end(partida.jogador2, partida.jogador1);
             partida.jogador1.partidas.add(partida);
             partida.jogador2.partidas.add(partida);
-            partida.jogador1.Jogando = false;
-            partida.jogador2.Jogando = false;
-        }
-        else {
+            partida.jogador1.setJogando(false);
+            partida.jogador2.setJogando(false);
+        } else {
             partida.jogador1.partidas.add(partida);
             partida.jogador2.partidas.add(partida);
-            partida.jogador1.Jogando = false;
-            partida.jogador2.Jogando = false;
+            partida.jogador1.setJogando(false);
+            partida.jogador2.setJogando(false);
         }
     }
 }
