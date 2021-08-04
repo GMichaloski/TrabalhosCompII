@@ -3,7 +3,6 @@ import java.util.ArrayList;
 public class JogoOnline {
 
     public static ArrayList<Jogador> jogadores = new ArrayList<>();
-    //ToDO Get e set no Jogador
 
     public static boolean CadastroJogadores(String name, String password) {
         Jogador newPlayer = new Jogador(name, password);
@@ -56,7 +55,7 @@ public class JogoOnline {
             return partida;
         }
         return null;
-        //ToDo tirar dúvida
+        //ToDo resolver nullPointerException
     }
 
     public static Jogador escolherAdversario(Jogador solicitante) {
