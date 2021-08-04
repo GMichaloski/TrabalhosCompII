@@ -29,7 +29,9 @@ public class Jogador {
     public void setJogando(boolean b) {
         this.Jogando = b;
     }
-
+    public int getINITIAL_POINTS(){
+        return INITIAL_POINTS;
+    }
     public boolean getOnline() {
         return online;
     }

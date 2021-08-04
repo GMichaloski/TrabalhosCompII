@@ -6,7 +6,6 @@ public class JogoOnline {
     //ToDO Get e set no Jogador
 
     public static boolean CadastroJogadores(String name, String password) {
-        int INICIAL_POINTS = 1000;
         Jogador newPlayer = new Jogador(name, password);
         for (Jogador i : jogadores) {
             if (i.userName.equals(newPlayer.userName)) {
@@ -14,7 +13,7 @@ public class JogoOnline {
             }
         }
         jogadores.add(newPlayer);
-        newPlayer.points = INICIAL_POINTS;
+        newPlayer.points = newPlayer.getINITIAL_POINTS();
         return true;
     }
 
