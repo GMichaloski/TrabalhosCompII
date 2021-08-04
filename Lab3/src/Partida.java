@@ -18,8 +18,16 @@ public class Partida {
         }
     }
 
-    public void end(Jogador vencedor, Jogador perdedor) {
+    public void pontuar(Jogador vencedor, Jogador perdedor) {
         vencedor.points++;
         perdedor.points--;
+    }
+
+    public void encerrando(){
+        //Para evitar repetições desnecessárias
+        this.jogador1.partidas.add(this);
+        this.jogador2.partidas.add(this);
+        this.jogador1.setJogando(false);
+        this.jogador2.setJogando(false);
     }
 }

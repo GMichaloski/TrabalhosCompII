@@ -71,23 +71,15 @@ public class JogoOnline {
     public static void encerrarPartida(Partida partida) {
         int resultado = partida.resultado;
         if (resultado == 1) {
-            partida.end(partida.jogador1, partida.jogador2);
-            partida.jogador1.partidas.add(partida);
-            partida.jogador2.partidas.add(partida);
-            partida.jogador1.setJogando(false);
-            partida.jogador2.setJogando(false);
+            partida.pontuar(partida.jogador1, partida.jogador2);
+            partida.encerrando();
 
         } else if (resultado == 2) {
-            partida.end(partida.jogador2, partida.jogador1);
-            partida.jogador1.partidas.add(partida);
-            partida.jogador2.partidas.add(partida);
-            partida.jogador1.setJogando(false);
-            partida.jogador2.setJogando(false);
+            partida.pontuar(partida.jogador2, partida.jogador1);
+            partida.encerrando();
         } else {
-            partida.jogador1.partidas.add(partida);
-            partida.jogador2.partidas.add(partida);
-            partida.jogador1.setJogando(false);
-            partida.jogador2.setJogando(false);
+            partida.encerrando();
         }
     }
+
 }
