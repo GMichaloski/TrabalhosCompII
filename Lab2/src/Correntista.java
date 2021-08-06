@@ -1,25 +1,33 @@
-import java.lang.reflect.Constructor;
-import java.util.Scanner;
+import java.util.ArrayList;
 
-public class Correntista {
+public class Correntista extends PessoaFisica{
 
-    private final long cpf;
-    private String nome;
+    private static final int LIMITE_DEFAULT = 100;
 
-    public Correntista(String nome, long cpf){
-        this.nome = nome;
-        this.cpf = cpf;
+    private float limiteChequeEspecial;
+    private Conta conta;
+    private ArrayList<AplicacaoFinanceira> investimentos;
+
+    public Correntista(String nome, long cpf) {
+        super(nome, cpf);
+        this.conta = null;
+        this.investimentos = new ArrayList<>();
+        this.limiteChequeEspecial = LIMITE_DEFAULT;
     }
 
-    public void setNome(String nome){
-        this.nome = nome;
+    public float getLimiteChequeEspecial() {
+        return limiteChequeEspecial;
     }
 
-    public long getCpf() {
-        return cpf;
+    public void setLimiteChequeEspecial(float limiteChequeEspecial) {
+        this.limiteChequeEspecial = limiteChequeEspecial;
     }
 
-    public String getNome(){
-        return nome;
+    public float getTotalInvestido() {
+        return 0;  // ToDo IMPLEMENT ME!!
+    }
+
+    public Conta getContaCorrente() {
+        return conta;
     }
 }

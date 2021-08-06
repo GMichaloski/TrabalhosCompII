@@ -8,22 +8,22 @@ public class ContaCorrenteTest {
     // para cobrir pequenos erros de precisão do tipo float
     private float FLOAT_DELTA = 0.00001f;
 
-    private ContaCorrente contaDoJoao;
+    private Conta contaDoJoao;
     private Correntista joao;
     private float saldoInicial;
 
-    private ContaCorrente contaDaMaria;
+    private Conta contaDaMaria;
     private Correntista maria;
 
 
     @Before
     public void setUp() {
         joao = new Correntista( "Joao", 40028922);
-        contaDoJoao = new ContaCorrente(1, joao);
+        contaDoJoao = new Conta(1, joao);
         saldoInicial = contaDoJoao.getSaldoEmReais();
 
         maria = new Correntista("Maria", 22222);
-        contaDaMaria = new ContaCorrente(2, maria);
+        contaDaMaria = new Conta(2, maria);
     }
 
     @Test
@@ -97,12 +97,12 @@ public class ContaCorrenteTest {
     
     @Test
     public void testGetQuantidadeDeTransacoesDeTodasAsContas(){
-        int temp = ContaCorrente.getQuantidadeDeTransacoesDeTodasAsContas();
+        int temp = Conta.getQuantidadeDeTransacoesDeTodasAsContas();
         contaDoJoao.efetuarTransferecia(contaDaMaria, 5);
         contaDaMaria.sacar(11);
 
         assertEquals("Todas as operações bancárias devem ser registradas.", temp + 2,
-                ContaCorrente.getQuantidadeDeTransacoesDeTodasAsContas(), FLOAT_DELTA);
+                Conta.getQuantidadeDeTransacoesDeTodasAsContas(), FLOAT_DELTA);
     }
 
     @Test

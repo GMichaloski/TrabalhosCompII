@@ -1,9 +1,8 @@
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Scanner;
 
 
-public class ContaCorrente {
+public class Conta {
 
     private final int numero;
 
@@ -11,7 +10,11 @@ public class ContaCorrente {
 
     private float saldoEmReais = 0;
 
+    private Gerente gerente;
+
     private ArrayList<String> transacoes;
+
+    private boolean ativa;
 
     public static final float SALDO_INICIAL_DA_CONTA = 10;  // "constante"
 
@@ -19,15 +22,14 @@ public class ContaCorrente {
 
 
     // CONSTRUTOR: método especial que roda quando chamamos o "new" para instanciar
-    public ContaCorrente(int numeroDaConta, Correntista correntista) {
+    public Conta(int numeroDaConta, Correntista correntista) {
         this.correntista = correntista;
         this.numero = numeroDaConta;
         this.saldoEmReais = SALDO_INICIAL_DA_CONTA;  // saldo inicial doado pelo banco
         this.transacoes = new ArrayList<>();
         this.transacoes.add("Conta criada com saldo de " + this.saldoEmReais);
+        this.ativa = true;
     }
-
-
 
     public float getSaldoEmReais() {
         return this.saldoEmReais;
@@ -82,10 +84,42 @@ public class ContaCorrente {
         }
     }
 
-    public void efetuarTransferecia(ContaCorrente contaDestino, float valor) {
+    public void efetuarTransferecia(Conta contaDestino, float valor) {
         if ((valor > 0) && (valor <= this.saldoEmReais)) {
             this.saldoEmReais -= valor;
             contaDestino.receberDepositoEmDinheiro(valor);
         }
+    }
+
+    private void registrarTransacao(String registro) {
+        String dataAtual = obterDataAtualAsString();
+        this.transacoes.add(dataAtual + ": " + registro);
+        quantidadeDeTransacoesDeTodasAsContas++;
+    }
+
+    String obterDataAtualAsString() {
+        return String.format("%s", new Date());
+    }
+
+    public void encerrar() {
+        if (this.saldoEmReais < 0) {
+            // ToDo lançar exceção
+            // não deixa encerrar conta com saldo negativo
+        }
+        this.ativa = false;  // desativou a conta
+
+        System.out.printf("\nConta %d encerrada", this.numero);
+    }
+
+    public Gerente getGerente() {
+        return gerente;
+    }
+
+    public void setGerente(Gerente novaGerente) {
+        if (this.gerente != null) {
+            // avisa ao gerente antigo que ele não é mais gerente
+            this.gerente.deixarDeGerenciarConta(this);
+        }
+        this.gerente = novaGerente;
     }
 }
