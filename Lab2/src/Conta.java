@@ -50,10 +50,11 @@ public class Conta {
         quantidadeDeTransacoesDeTodasAsContas++;
     }
 
-    public String getNome(){
+    public String getNome() {
         String nome = this.correntista.getNome();
         return nome;
     }
+
     public long getCpfDoCorrentista() {
         long cpfDoCorrentista = this.correntista.getCpf();
         return cpfDoCorrentista;
@@ -103,8 +104,9 @@ public class Conta {
 
     public void encerrar() {
         if (this.saldoEmReais < 0) {
-            // ToDo lançar exceção
+            // ToDo tirar dúvida exceção
             // não deixa encerrar conta com saldo negativo
+            System.out.printf("\nVocê não pode encerrar sua conta enquanto estiver negativado!");
         }
         this.ativa = false;  // desativou a conta
 
@@ -121,5 +123,15 @@ public class Conta {
             this.gerente.deixarDeGerenciarConta(this);
         }
         this.gerente = novaGerente;
+    }
+
+    //Função para aplicar o dinheiro na conta de investimento
+    public float aplicarDinheiro(float valorInvestido) {
+        if ((valorInvestido > 0) && (valorInvestido <= this.saldoEmReais)) {
+            this.saldoEmReais -= valorInvestido;
+            return valorInvestido;
+        } else {
+            return 0;
+        }
     }
 }

@@ -6,7 +6,7 @@ public class Correntista extends PessoaFisica{
 
     private float limiteChequeEspecial;
     private Conta conta;
-    private ArrayList<AplicacaoFinanceira> investimentos;
+    private ArrayList<ContaInvestimento> investimentos;
 
     public Correntista(String nome, long cpf) {
         super(nome, cpf);
