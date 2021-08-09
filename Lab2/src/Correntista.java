@@ -27,7 +27,12 @@ public class Correntista extends PessoaFisica{
         return 0;  // ToDo IMPLEMENT ME!!
     }
 
+    public Conta setContaCorrente(Conta conta){
+        this.conta = conta;
+        return conta;
+    }
     public Conta getContaCorrente() {
+        conta = this.conta;
         return conta;
     }
 }

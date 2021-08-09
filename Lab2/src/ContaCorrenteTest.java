@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 public class ContaCorrenteTest {
 
     // para cobrir pequenos erros de precisão do tipo float
-    private float FLOAT_DELTA = 0.00001f;
+    private final float FLOAT_DELTA = 0.00001f;
 
     private Conta contaDoJoao;
     private Correntista joao;
@@ -139,6 +139,23 @@ public class ContaCorrenteTest {
                 contaDoJoao.getSaldoEmReais(),
                 FLOAT_DELTA
         );
+    }
+
+    @Test
+    public void testarContaInvestimento(){
+        String tipoDeInvestimento = "Tesouro Direto";
+        float taxaDeJuros = 5;
+        ContaInvestimento contaDoJoao = new ContaInvestimento(1,joao,tipoDeInvestimento,taxaDeJuros);
+        contaDoJoao.sacar(contaDoJoao.getSaldoEmReais());
+        contaDoJoao.receberDepositoEmDinheiro(100);
+
+        contaDoJoao.aplicarJuros(taxaDeJuros,tipoDeInvestimento);
+        assertEquals("O valor do saldo não é alterado até ser resgatado",
+                100,contaDoJoao.getSaldoEmReais(),FLOAT_DELTA);
+
+        contaDoJoao.resgatarTotal();
+        assertEquals("",105,contaDoJoao.getSaldoEmReais(),FLOAT_DELTA);
+
     }
 
 }

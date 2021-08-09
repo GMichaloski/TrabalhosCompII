@@ -24,6 +24,7 @@ public class Conta {
     // CONSTRUTOR: método especial que roda quando chamamos o "new" para instanciar
     public Conta(int numeroDaConta, Correntista correntista) {
         this.correntista = correntista;
+        this.correntista.setContaCorrente(Conta.this);
         this.numero = numeroDaConta;
         this.saldoEmReais = SALDO_INICIAL_DA_CONTA;  // saldo inicial doado pelo banco
         this.transacoes = new ArrayList<>();
@@ -106,7 +107,6 @@ public class Conta {
         if (this.saldoEmReais < 0) {
             // ToDo tirar dúvida exceção
             // não deixa encerrar conta com saldo negativo
-            System.out.printf("\nVocê não pode encerrar sua conta enquanto estiver negativado!");
         }
         this.ativa = false;  // desativou a conta
 
@@ -125,13 +125,4 @@ public class Conta {
         this.gerente = novaGerente;
     }
 
-    //Função para aplicar o dinheiro na conta de investimento
-    public float aplicarDinheiro(float valorInvestido) {
-        if ((valorInvestido > 0) && (valorInvestido <= this.saldoEmReais)) {
-            this.saldoEmReais -= valorInvestido;
-            return valorInvestido;
-        } else {
-            return 0;
-        }
-    }
 }
