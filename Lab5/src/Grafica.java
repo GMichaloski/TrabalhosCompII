@@ -10,11 +10,11 @@ public class Grafica {
     }
 
     public void imprimirDocumento(Documento documento) {
-        if (revezador >= Impressoras.size()){
+        if (revezador >= Impressoras.size()) {
             revezador = 0;
         }
-        for (int i = 0; i < Impressoras.size(); i++ ){
-            if (revezador == i){
+        for (int i = 0; i < Impressoras.size(); i++) {
+            if (revezador == i) {
                 Impressoras.get(i).imprimirDocumento(documento);
                 revezador++;
                 break;
