@@ -2,30 +2,7 @@ import java.util.HashMap;
 
 public class CaracterMaisFrequente {
 
-    public static char encontrarCaracterMaisFrequente(String texto) {
-
-        // Algoritmo ineficiente (quadrático):
-        /*
-        char maisFrequente = texto.charAt(0);
-        int ocorrenciasDoMaisFrequente = 1;
-
-        for (int i = 0; i < texto.length(); i++) {
-            char caracterDaVez = texto.charAt(i);
-            int contOcorrencias = 1;
-            for (int j = i + 1; j < texto.length(); j++) {
-                if (texto.charAt(j) == caracterDaVez) {
-                    contOcorrencias++;
-                }
-            }
-
-            if (contOcorrencias > ocorrenciasDoMaisFrequente) {
-                maisFrequente = caracterDaVez;
-                ocorrenciasDoMaisFrequente = contOcorrencias;
-            }
-        }
-
-        return maisFrequente;
-        */
+    public static char encontrarCaracterMaisFrequenteL(String texto) {
 
         // Algoritmo eficiente (linear):
         int contagemOcorrencias = 0;
@@ -49,5 +26,30 @@ public class CaracterMaisFrequente {
             }
         }
         return maiorOcorrencia;
+    }
+    public static char EncontrarCaracterMaisFrequenteQ(String texto){
+
+        // Algoritmo ineficiente (quadrático):
+
+        char maisFrequente = texto.charAt(0);
+        int ocorrenciasDoMaisFrequente = 1;
+
+        for (int i = 0; i < texto.length(); i++) {
+            char caracterDaVez = texto.charAt(i);
+            int contOcorrencias = 1;
+            for (int j = i + 1; j < texto.length(); j++) {
+                if (texto.charAt(j) == caracterDaVez) {
+                    contOcorrencias++;
+                }
+            }
+
+            if (contOcorrencias > ocorrenciasDoMaisFrequente) {
+                maisFrequente = caracterDaVez;
+                ocorrenciasDoMaisFrequente = contOcorrencias;
+            }
+        }
+
+        return maisFrequente;
+
     }
 }
