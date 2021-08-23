@@ -27,7 +27,7 @@ public class CaracterMaisFrequente {
         }
         return maiorOcorrencia;
     }
-    public static char EncontrarCaracterMaisFrequenteQ(String texto){
+    public static char encontrarCaracterMaisFrequenteQ(String texto){
 
         // Algoritmo ineficiente (quadrático):
 
