@@ -12,6 +12,7 @@ public class SomaDoPar {
      * @return O menor dos elementos do par encontrado;
      * ou null, caso nenhum par de elementos some o valor desejado
      */
+
     public static Integer encontrarParComSomaDadaL(
             ArrayList<Integer> numeros, int somaDesejada) {
 
