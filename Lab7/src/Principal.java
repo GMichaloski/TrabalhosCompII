@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class Principal {
-
+    protected static int loginsBemSucedidos = 0;
     public static void main(String[] args) {
 
 
@@ -25,12 +25,9 @@ public class Principal {
 
         inicio = System.currentTimeMillis();
 
-        int loginsBemSucedidos = 0;
+
         for (int i = 1; i <= LOGINS; i++) {
             String username = "Jogador" + i;
-            if (jogo.fazerLogin(username, "" + i)) {
-                loginsBemSucedidos++;
-            }
         }
 
         duracao = System.currentTimeMillis() - inicio;
