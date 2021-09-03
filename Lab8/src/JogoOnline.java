@@ -129,6 +129,7 @@ public class JogoOnline {
         jogador1.setJogando(true);
         jogador2.setJogando(true);
 
+
         novaPartida.setResultado(Partida.PARTIDA_EM_ANDAMENTO);
 
         return novaPartida;

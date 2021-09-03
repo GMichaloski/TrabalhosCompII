@@ -117,8 +117,9 @@ public class JogoOnlineTest {
     public void testarUsuarioInexistente() throws SenhaInvalidaException, UsuarioInexistenteException {
         jogo.fazerLogin("Rodolfo", "vasco");
     }
+
     @Test
-    public void obterJogadoresEmOrdemAlfabeticaTest(){
+    public void obterJogadoresEmOrdemAlfabeticaTest() {
         Jogador C = jogo.cadastrarJogador("CCCCC", "123");
         Jogador A = jogo.cadastrarJogador("AAAAA", "123");
         Jogador B = jogo.cadastrarJogador("BBBBB", "123");
@@ -129,13 +130,13 @@ public class JogoOnlineTest {
     }
 
     @Test
-    public void obterRankingTest(){
+    public void obterRankingTest() {
         Jogador C = jogo.cadastrarJogador("CCCCC", "123");
         Jogador A = jogo.cadastrarJogador("AAAAA", "123");
         Jogador B = jogo.cadastrarJogador("BBBBB", "123");
-        Partida pt = new Partida(A,B);
-        pt.setResultado(-1);
-        jogo.encerrarPartida(pt, 1);
+        Partida partida = new Partida(A, B);
+        partida.setResultado(-1);
+        jogo.encerrarPartida(partida, 1);
 
         assertEquals(1001, jogo.obterRanking().get(0).getPontuacao());
         assertEquals(1000, jogo.obterRanking().get(1).getPontuacao());
