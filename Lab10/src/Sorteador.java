@@ -1,2 +1,3 @@
-package PACKAGE_NAME;public interface Sorteador {
+public interface Sorteador {
+    int sortear();
 }
