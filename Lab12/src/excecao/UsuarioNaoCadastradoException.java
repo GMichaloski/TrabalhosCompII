@@ -1,2 +1,4 @@
-package excecao;public class UsuarioNaoCadastradoException {
+package excecao;
+
+public class UsuarioNaoCadastradoException extends Exception {
 }

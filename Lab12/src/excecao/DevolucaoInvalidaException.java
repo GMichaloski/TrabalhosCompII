@@ -1,2 +1,4 @@
-package excecao;public class DevolucaoInvalidaException {
+package excecao;
+
+public class DevolucaoInvalidaException extends Exception {
 }
