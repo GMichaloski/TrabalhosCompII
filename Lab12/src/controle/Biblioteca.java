@@ -163,16 +163,4 @@ public class Biblioteca {
         return mapaDeLivros.getOrDefault(livro, 0);
 
     }
-    /*2) Eu criaria os atributos int "categoria" e int "score" dentro de "Usuario", desta forma, sempre que o Usuario
-pegasse um Livro emprestado, o código, primeiramente, verificaria a categoria que ele se encontra (observando,
-através de um switch,quantos livros esse usuario poderia pegar emprestado), em seguida o código aumentaria o score
-e, finalmente, verificaria se esse usuario merece uma promoção.
-
-3) Criaria uma Superclasse "Item" com Subclasses Livro, Jogo, Revista e DVD. A regra de negócio relacionada ao
-limite de empréstimos se referiria à qualquer Item, não só mais à livros.
-
-4) Criaria uma Superclasse "Biblioteca" com subclasses referentes à cada tipo referenciado, que dão overwrite nas
-funções emprestar() e receberDevolucao()
-
-*/
 }
