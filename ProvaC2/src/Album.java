@@ -137,6 +137,6 @@ public class Album<T extends Colecionavel> {
                 return t;
             }
         }
-        return null;  // ToDo IMPLEMENT ME!!
+        return null;
     }
 }
